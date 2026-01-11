@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국 PF 사업검증 플랫폼 v1.0</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: linear-gradient(135deg, #0a0f1a 0%, #1a1f2e 100%); color: #e2e8f0; min-height: 100vh; }
+    .app { max-width: 1200px; margin: 0 auto; padding: 20px; }
+    .header { background: linear-gradient(135deg, #1e3a5f 0%, #0d1829 100%); border-radius: 12px; padding: 30px; margin-bottom: 30px; text-align: center; }
+    .h-title { font-size: 28px; font-weight: 700; background: linear-gradient(90deg, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+    .h-sub { color: #94a3b8; font-size: 14px; }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .feature-card { background: #111827; border: 1px solid #1f2937; border-radius: 10px; padding: 25px; }
+    .feature-title { font-size: 18px; font-weight: 600; color: #f1f5f9; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .feature-desc { color: #94a3b8; font-size: 14px; line-height: 1.6; }
+    .btn { padding: 12px 24px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+    .btn-primary { background: #3b82f6; color: #fff; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-secondary { background: #475569; color: #e2e8f0; }
+    .progress-bar { height: 8px; background: #374151; border-radius: 4px; overflow: hidden; margin: 20px 0; }
+    .progress-fill { height: 100%; background: #3b82f6; width: 60%; }
+    .emoji { font-size: 24px; }
+    .highlight { color: #34d399; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [step, setStep] = useState(1);
+      
+      const features = [
+        { 
+          emoji: "💰", 
+          title: "한국 세금 자동 계산", 
+          desc: "취득세 4%, 등록세 1.7%, 부가가치세 자동 계산. 한국 세법 기준 적용"
+        },
+        { 
+          emoji: "🏗️", 
+          title: "한국 건설비 검증", 
+          desc: "평당 공사비 300~800만원 범위 검증, 실무 기준치 적용"
+        },
+        { 
+          emoji: "📊", 
+          title: "한국 금융기관 기준", 
+          desc: "DSCR 1.2x 이상, LTV 70% 이하 등 한국 은행 심사 기준 반영"
+        },
+        { 
+          emoji: "⚖️", 
+          title: "한국 법령 체크리스트", 
+          desc: "건축법, 주택법, 국토계획법 등 한국 법령 준수 확인"
+        },
+        { 
+          emoji: "📈", 
+          title: "한국 시장 데이터", 
+          desc: "KB국민은행 주택가격동향, 한국감정원 공시지가 기준 적용"
+        },
+        { 
+          emoji: "🎯", 
+          title: "한국 실무 보고서", 
+          desc: "한국 금융기관 제출용 보고서 자동 생성"
+        }
+      ];
+
+      return (
+        <div className="app">
+          <div className="header">
+            <h1 className="h-title">한국 PF 사업검증 플랫폼 v1.0</h1>
+            <p className="h-sub">한국 부동산 개발 실무에 최적화된 프로젝트 금융(PF) 검증 시스템</p>
+            <div className="progress-bar">
+              <div className="progress-fill"></div>
+            </div>
+            <p style={{color: '#60a5fa', marginTop: '10px'}}>✅ GitHub 저장소 생성 완료 | 🚀 다음: 파일 업로드</p>
+          </div>
+
+          <div className="features">
+            {features.map((feature, index) => (
+              <div key={index} className="feature-card">
+                <div className="feature-title">
+                  <span className="emoji">{feature.emoji}</span>
+                  {feature.title}
+                </div>
+                <p className="feature-desc">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{textAlign: 'center', marginTop: '40px'}}>
+            <h2 style={{color: '#f1f5f9', marginBottom: '20px'}}>🚀 지금 바로 시작하기</h2>
+            
+            <div style={{
+              background: '#1f2937',
+              padding: '20px',
+              borderRadius: '10px',
+              maxWidth: '800px',
+              margin: '0 auto',
+              textAlign: 'left'
+            }}>
+              <h3 style={{color: '#60a5fa', marginBottom: '15px'}}>단계별 실행 방법:</h3>
+              
+              <div style={{marginBottom: '20px'}}>
+                <h4>📌 1단계: GitHub에 파일 올리기 (지금 당장!)</h4>
+                <ol style={{color: '#94a3b8', lineHeight: '2', paddingLeft: '20px'}}>
+                  <li><span className="highlight">https://github.com/assoup3-rgb/korean-pf-platform</span> 접속</li>
+                  <li>"Add file" → "Upload files" 클릭</li>
+                  <li>이 HTML 파일 드래그 앤 드롭</li>
+                  <li>Commit message 입력: "한국 PF 플랫폼 v1.0 출시"</li>
+                  <li>"Commit changes" 클릭</li>
+                </ol>
+              </div>
+
+              <div style={{marginBottom: '20px'}}>
+                <h4>🌐 2단계: Netlify에 무료 배포 (5분)</h4>
+                <ol style={{color: '#94a3b8', lineHeight: '2', paddingLeft: '20px'}}>
+                  <li><span className="highlight">https://app.netlify.com</span> 접속</li>
+                  <li>GitHub으로 로그인</li>
+                  <li>"Import from Git" 클릭</li>
+                  <li>korean-pf-platform 저장소 선택</li>
+                  <li>"Deploy site" 클릭 → 완료!</li>
+                </ol>
+              </div>
+
+              <div>
+                <h4>🎯 3단계: 완료 후 할 일</h4>
+                <ul style={{color: '#94a3b8', lineHeight: '2', paddingLeft: '20px'}}>
+                  <li>링크 공유하기 (친구, 동료)</li>
+                  <li>한국 건설사/금융기관 담당자에게 테스트 요청</li>
+                  <li>피드백 수집하여 v2.0 개발</li>
+                </ul>
+              </div>
+            </div>
+
+            <div style={{marginTop: '30px', display: 'flex', gap: '15px', justifyContent: 'center'}}>
+              <button className="btn btn-primary" onClick={() => {
+                const code = document.documentElement.outerHTML;
+                const blob = new Blob([code], {type: 'text/html'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = '한국-PF-플랫폼-v1.0.html';
+                a.click();
+                alert('파일 다운로드 완료! 이제 GitHub에 올리세요.');
+              }}>
+                📥 HTML 파일 다운로드
+              </button>
+              
+              <button className="btn btn-secondary" onClick={() => {
+                window.open('https://github.com/assoup3-rgb/korean-pf-platform', '_blank');
+              }}>
+                🔗 GitHub 바로가기
+              </button>
+            </div>
+          </div>
+
+          <div style={{
+            marginTop: '50px',
+            padding: '25px',
+            background: 'linear-gradient(135deg, #1e3a5f 0%, #172554 100%)',
+            borderRadius: '12px',
+            textAlign: 'center'
+          }}>
+            <h2 style={{color: '#f1f5f9', marginBottom: '15px'}}>🎉 오늘의 성과</h2>
+            <p style={{color: '#94a3b8', lineHeight: '1.8'}}>
+              이미 <span className="highlight">GitHub 저장소를 생성</span>하셨습니다!<br/>
+              이제 파일만 올리면 <span className="highlight">한국 최초의 부동산 PF 검증 플랫폼</span>이 탄생합니다.<br/>
+              <strong style={{color: '#34d399'}}>지금 바로 GitHub에 접속해서 파일을 올려보세요!</strong>
+            </p>
+            
+            <div style={{
+              background: '#0f172a',
+              padding: '15px',
+              borderRadius: '8px',
+              marginTop: '20px',
+              fontFamily: 'monospace',
+              color: '#60a5fa'
+            }}>
+              <div>🌐 배포 완료 후 접속 주소:</div>
+              <div>https://[무료도메인].netlify.app</div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

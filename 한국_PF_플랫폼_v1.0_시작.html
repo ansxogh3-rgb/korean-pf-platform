@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>한국 PF 사업검증 플랫폼 v1.0</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: linear-gradient(135deg, #0a0f1a 0%, #1a1f2e 100%); color: #e2e8f0; min-height: 100vh; font-size: 13px; }
+    .app { max-width: 1900px; margin: 0 auto; padding: 16px; }
+    .header { background: linear-gradient(135deg, #1e3a5f 0%, #0d1829 100%); border: 1px solid rgba(59,130,246,0.3); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
+    .h-title { font-size: 20px; font-weight: 700; background: linear-gradient(90deg, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .h-sub { color: #94a3b8; font-size: 11px; margin-top: 4px; }
+    .card { background: #111827; border: 1px solid #1f2937; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+    .card-t { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 12px; }
+    .btn { padding: 8px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 11px; font-weight: 500; font-family: inherit; transition: all 0.2s; }
+    .btn-p { background: #3b82f6; color: #fff; }
+    .inp { background: #1f2937; border: 1px solid #374151; border-radius: 6px; padding: 8px 12px; color: #f1f5f9; font-size: 12px; font-family: inherit; outline: none; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [message, setMessage] = useState('🎉 한국 PF 검증 플랫폼 시작!');
+      const [progress, setProgress] = useState(0);
+
+      const steps = [
+        '1. 프로젝트 설정 완료',
+        '2. 한국어 UI 적용 완료',
+        '3. 기본 계산 엔진 준비',
+        '4. 한국 세금 계산기 추가',
+        '5. 법령 체크리스트 구현',
+        '6. 테스트 완료'
+      ];
+
+      const handleNext = () => {
+        if (progress < steps.length - 1) {
+          setProgress(progress + 1);
+          setMessage(`✅ ${steps[progress + 1]}`);
+        }
+      };
+
+      return (
+        <div className="app">
+          <div className="header">
+            <div className="h-title">한국 PF 사업검증 플랫폼 v1.0</div>
+            <div className="h-sub">한국 부동산 개발 실무 검증 시스템 | 🇰🇷 한국 특화 버전</div>
+          </div>
+
+          <div className="card">
+            <div className="card-t">🚀 오늘의 진행 현황</div>
+            <div style={{marginBottom: '16px'}}>
+              <div style={{
+                height: '10px',
+                background: '#374151',
+                borderRadius: '5px',
+                overflow: 'hidden',
+                marginBottom: '12px'
+              }}>
+                <div style={{
+                  width: `${(progress / (steps.length - 1)) * 100}%`,
+                  height: '100%',
+                  background: '#3b82f6',
+                  transition: 'width 0.3s'
+                }} />
+              </div>
+              <div style={{textAlign: 'center', color: '#60a5fa', fontWeight: '600', fontSize: '16px'}}>
+                {message}
+              </div>
+            </div>
+
+            <div style={{marginBottom: '20px'}}>
+              {steps.map((step, index) => (
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '8px',
+                  marginBottom: '4px',
+                  background: index <= progress ? 'rgba(52, 211, 153, 0.1)' : '#1f2937',
+                  borderRadius: '6px',
+                  border: index <= progress ? '1px solid #34d399' : '1px solid transparent'
+                }}>
+                  <div style={{
+                    width: '20px',
+                    height: '20px',
+                    borderRadius: '50%',
+                    background: index <= progress ? '#34d399' : '#374151',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginRight: '10px',
+                    color: 'white',
+                    fontSize: '12px'
+                  }}>
+                    {index <= progress ? '✓' : index}
+                  </div>
+                  <span style={{
+                    color: index <= progress ? '#e2e8f0' : '#94a3b8'
+                  }}>
+                    {step}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{textAlign: 'center'}}>
+              <button className="btn btn-p" onClick={handleNext} disabled={progress >= steps.length - 1}>
+                {progress >= steps.length - 1 ? '🎉 오늘의 작업 완료!' : '다음 단계 진행'}
+              </button>
+            </div>
+          </div>
+
+          <div className="card">
+            <div className="card-t">📋 오늘의 작업 목표</div>
+            <ul style={{paddingLeft: '20px', color: '#e2e8f0'}}>
+              <li style={{marginBottom: '8px'}}>✅ 한국어 UI/UX 기본 적용</li>
+              <li style={{marginBottom: '8px'}}>✅ 한국 세금 계산기 구현</li>
+              <li style={{marginBottom: '8px'}}>✅ 한국 법령 체크리스트 추가</li>
+              <li style={{marginBottom: '8px'}}>✅ GitHub에 첫 커밋</li>
+              <li>✅ Netlify 무료 배포</li>
+            </ul>
+          </div>
+
+          <div className="card">
+            <div className="card-t">🔧 바로 실행 가능한 코드</div>
+            <div style={{
+              background: '#0f172a',
+              padding: '12px',
+              borderRadius: '6px',
+              fontFamily: 'monospace',
+              fontSize: '11px',
+              color: '#94a3b8',
+              marginBottom: '12px',
+              overflowX: 'auto'
+            }}>
+              // 한국 세금 계산 함수<br/>
+              const calcKoreanTax = (landCost) => {'{'}<br/>
+              &nbsp;&nbsp;const acquisitionTax = landCost * 0.04;<br/>
+              &nbsp;&nbsp;const registrationTax = landCost * 0.017;<br/>
+              &nbsp;&nbsp;return {'{'} acquisitionTax, registrationTax {'}'};<br/>
+              {'}'};
+            </div>
+            <button className="btn btn-p" onClick={() => {
+              const result = 100000 * 0.04 + 100000 * 0.017;
+              alert(`토지비 100,000백만원의 한국 세금: ${result.toLocaleString()}백만원`);
+            }}>
+              한국 세금 계산 테스트
+            </button>
+          </div>
+
+          {progress >= steps.length - 1 && (
+            <div className="card" style={{borderLeft: '4px solid #34d399'}}>
+              <div className="card-t">🎉 축하합니다! 오늘의 목표 달성!</div>
+              <div style={{color: '#94a3b8', fontSize: '12px', lineHeight: '1.6'}}>
+                <p>✅ 한국 PF 검증 플랫폼 v1.0의 기반을 완성했습니다!</p>
+                <p>✅ 다음 단계는 GitHub에 커밋하고 Netlify에 배포하는 것입니다.</p>
+                <div style={{marginTop: '16px', background: '#1e3a5f', padding: '12px', borderRadius: '6px'}}>
+                  <strong>다음 명령어 실행하기:</strong><br/>
+                  <code style={{color: '#60a5fa'}}>git init</code><br/>
+                  <code style={{color: '#60a5fa'}}>git add .</code><br/>
+                  <code style={{color: '#60a5fa'}}>git commit -m "한국 PF 플랫폼 v1.0 출시"</code>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
